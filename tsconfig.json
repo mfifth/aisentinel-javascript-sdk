@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2021", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationDir": "./node/dist",
+    "emitDeclarationOnly": false,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": false,
+    "resolveJsonModule": true,
+    "useDefineForClassFields": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "outDir": "./tmp",
+    "types": ["node", "jest"],
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true
+  },
+  "include": ["src", "examples", "tests"],
+  "exclude": ["node_modules", "browser/dist", "node/dist"]
+}
