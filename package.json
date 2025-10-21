@@ -1,5 +1,5 @@
 {
-  "name": "@aisentinel/javascript-sdk",
+  "name": "@mfifth/aisentinel-javascript-sdk",
   "version": "0.1.0",
   "description": "Isomorphic JavaScript SDK for AISentinel governance platform.",
   "type": "module",

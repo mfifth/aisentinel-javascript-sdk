@@ -1,6 +1,6 @@
 # AISentinel JavaScript SDK
 
-[![npm version](https://badge.fury.io/js/%40aisentinel%2Fjavascript-sdk.svg)](https://www.npmjs.com/package/@aisentinel/javascript-sdk)
+[![npm version](https://badge.fury.io/js/%40mfifth%2Faisentinel-javascript-sdk.svg)](https://www.npmjs.com/package/@mfifth/aisentinel-javascript-sdk)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![CI](https://github.com/aisentinel/aisentinel-javascript-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/aisentinel/aisentinel-javascript-sdk/actions/workflows/ci.yml)
 
@@ -19,7 +19,7 @@ The official JavaScript/TypeScript SDK for AISentinel - zero-latency governance 
 ## Installation
 
 ```bash
-npm install @aisentinel/javascript-sdk
+npm install @mfifth/aisentinel-javascript-sdk
 ```
 
 ## Quick Start
@@ -27,7 +27,7 @@ npm install @aisentinel/javascript-sdk
 ### Node.js
 
 ```typescript
-import { Governor } from '@aisentinel/javascript-sdk';
+import { Governor } from '@mfifth/aisentinel-javascript-sdk';
 
 const governor = new Governor({
   apiKey: process.env.AISENTINEL_API_KEY,
@@ -58,7 +58,7 @@ if (result.allowed) {
 <html>
 <head>
   <script type="module">
-    import { Governor } from 'https://esm.sh/@aisentinel/javascript-sdk';
+    import { Governor } from 'https://esm.sh/@mfifth/aisentinel-javascript-sdk';
 
     const governor = new Governor({
       apiKey: 'your-api-key',
@@ -89,7 +89,7 @@ if (result.allowed) {
 ### Configuration
 
 ```typescript
-import { Governor, resolveGovernorConfig } from '@aisentinel/javascript-sdk';
+import { Governor, resolveGovernorConfig } from '@mfifth/aisentinel-javascript-sdk';
 
 // Using environment variables
 const config = resolveGovernorConfig({
@@ -119,7 +119,7 @@ const result = await governor.preflight(candidate, context);
 ### PII Detection
 
 ```typescript
-import { detectPII, containsPII } from '@aisentinel/javascript-sdk';
+import { detectPII, containsPII } from '@mfifth/aisentinel-javascript-sdk';
 
 const text = "Contact john.doe@example.com for more info";
 const piiEntities = detectPII(text);
@@ -133,7 +133,7 @@ if (containsPII(text)) {
 ### Custom Storage
 
 ```typescript
-import { createStorageDriver } from '@aisentinel/javascript-sdk';
+import { createStorageDriver } from '@mfifth/aisentinel-javascript-sdk';
 
 // Use custom storage implementation
 const storage = createStorageDriver('memory'); // or 'indexeddb', 'filesystem'
@@ -184,7 +184,7 @@ interface GovernorConfig {
 
 ```typescript
 import express from 'express';
-import { Governor } from '@aisentinel/javascript-sdk';
+import { Governor } from '@mfifth/aisentinel-javascript-sdk';
 
 const app = express();
 const governor = new Governor({ apiKey: process.env.AISENTINEL_API_KEY });
@@ -216,7 +216,7 @@ app.use(async (req, res, next) => {
 
 ```typescript
 import { useState, useEffect } from 'react';
-import { Governor } from '@aisentinel/javascript-sdk';
+import { Governor } from '@mfifth/aisentinel-javascript-sdk';
 
 export function useGovernor() {
   const [governor, setGovernor] = useState<Governor | null>(null);
@@ -260,7 +260,7 @@ function MyComponent() {
 ### Next.js API Route
 
 ```typescript
-import { Governor } from '@aisentinel/javascript-sdk';
+import { Governor } from '@mfifth/aisentinel-javascript-sdk';
 
 let governor: Governor;
 
