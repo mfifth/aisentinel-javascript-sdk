@@ -112,8 +112,7 @@ export const httpRequest = async <T = unknown>(options: HttpRequestOptions): Pro
   };
 
   if (!isBrowser() && agent) {
-    // @ts-expect-error node-fetch agent option
-    requestInit.agent = agent;
+    (requestInit as any).agent = agent;
   }
 
   const request = fetchImpl(options.url, requestInit);

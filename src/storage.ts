@@ -81,7 +81,7 @@ const createBrowserStorage = (prefix: string): StorageDriver => ({
       const { keys } = await ensureIndexedDb();
       const indexedKeys = await keys();
       indexedKeys.forEach((name) => {
-        if (name.startsWith(prefixFilter)) {
+        if (typeof name === 'string' && name.startsWith(prefixFilter)) {
           matches.add(name.replace(`${prefix}:`, ''));
         }
       });

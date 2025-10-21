@@ -5,7 +5,7 @@ import json from '@rollup/plugin-json';
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { terser } from '@rollup/plugin-terser';
+import terser from '@rollup/plugin-terser';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -58,13 +58,15 @@ const browserConfig = {
     {
       file: 'browser/dist/index.js',
       format: 'es',
-      sourcemap: true
+      sourcemap: true,
+      inlineDynamicImports: true
     },
     {
       file: 'browser/dist/index.cjs',
       format: 'cjs',
       sourcemap: true,
-      exports: 'named'
+      exports: 'named',
+      inlineDynamicImports: true
     }
   ],
   plugins: basePlugins({ browser: true })
@@ -79,13 +81,15 @@ const nodeConfig = {
     {
       file: 'node/dist/index.js',
       format: 'es',
-      sourcemap: true
+      sourcemap: true,
+      inlineDynamicImports: true
     },
     {
       file: 'node/dist/index.cjs',
       format: 'cjs',
       sourcemap: true,
-      exports: 'named'
+      exports: 'named',
+      inlineDynamicImports: true
     }
   ],
   external: [
