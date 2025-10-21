@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40mfifth%2Faisentinel-javascript-sdk.svg)](https://www.npmjs.com/package/@mfifth/aisentinel-javascript-sdk)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![CI](https://github.com/aisentinel/aisentinel-javascript-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/aisentinel/aisentinel-javascript-sdk/actions/workflows/ci.yml)
+[![CI](https://github.com/mfifth/aisentinel-javascript-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/mfifth/aisentinel-javascript-sdk/actions/workflows/ci.yml)
 
 The official JavaScript/TypeScript SDK for AISentinel - zero-latency governance for AI agents in browsers and Node.js.
 
@@ -351,7 +351,5 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## Support
 
-- 📖 [Documentation](https://docs.aisentinel.ai/javascript)
-- 🐛 [Issue Tracker](https://github.com/aisentinel/aisentinel-javascript-sdk/issues)
-- 💬 [Community Forum](https://community.aisentinel.ai)
-- 📧 [Email Support](mailto:support@aisentinel.ai)
+- 📖 [Documentation](https://aisentinel.fly.dev/docs)
+- 🐛 [Issue Tracker](https://github.com/mfifth/aisentinel-javascript-sdk/issues)
