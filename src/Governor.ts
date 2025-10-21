@@ -13,12 +13,12 @@ import {
   type PolicyDefinition,
   type PolicyUpdate,
   type Rulepack,
+  type StorageDriver,
   GovernorError,
   NetworkError,
   PolicyError
 } from './types.js';
 import { getEnvironment, httpRequest, randomId, exponentialBackoff, decompress } from './utils.js';
-import type { StorageDriver } from './types.js';
 
 const OFFLINE_QUEUE_KEY = 'offline-queue';
 const AUDIT_LOG_KEY = 'audit-log';
@@ -40,8 +40,7 @@ const toUint8Array = (chunk: unknown): Uint8Array => {
     return chunk;
   }
   if (ArrayBuffer.isView(chunk)) {
-    const view = chunk as ArrayBufferView;
-    return new Uint8Array(view.buffer, view.byteOffset, view.byteLength);
+    return new Uint8Array(chunk.buffer, chunk.byteOffset, chunk.byteLength);
   }
   if (chunk instanceof ArrayBuffer) {
     return new Uint8Array(chunk);
@@ -187,7 +186,7 @@ export class Governor {
 
     const environment = getEnvironment();
     const url = `${this.config.endpoint}/policies/${policyId}/rulepack`;
-    const response = await this.requestWithRetry<ArrayBuffer | any>({
+    const response = await this.requestWithRetry<unknown>({
       url,
       method: 'GET',
       headers: this.createHeaders(),
@@ -206,10 +205,8 @@ export class Governor {
       rawBytes = concatUint8Arrays(chunks);
     } else if (response.data instanceof ArrayBuffer) {
       rawBytes = new Uint8Array(response.data);
-    } else if (typeof response.data === 'string') {
-      rawBytes = new TextEncoder().encode(response.data);
     } else {
-      rawBytes = new TextEncoder().encode(JSON.stringify(response.data));
+      rawBytes = new Uint8Array(Buffer.from(response.data as string));
     }
 
     let rulepack: Rulepack;
@@ -342,7 +339,7 @@ export class Governor {
   }
 
   async getAuditLog(): Promise<AuditRecord[]> {
-    return [...this.auditLog];
+    return Promise.resolve([...this.auditLog]);
   }
 
   async clearAuditLog(): Promise<void> {

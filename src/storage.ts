@@ -28,7 +28,7 @@ const createBrowserStorage = (prefix: string): StorageDriver => ({
     const namespaced = getPrefixedKey(prefix, key);
     try {
       const { get } = await ensureIndexedDb();
-      const entry = (await get(namespaced)) as CacheEntry<T> | undefined;
+      const entry = await get(namespaced);
       if (!entry || isExpired(entry)) {
         if (entry) {
           await this.removeItem(key);
@@ -36,7 +36,7 @@ const createBrowserStorage = (prefix: string): StorageDriver => ({
         return undefined;
       }
       return entry.value;
-    } catch (error) {
+    } catch {
       if (typeof localStorage === 'undefined') {
         return undefined;
       }
@@ -67,7 +67,7 @@ const createBrowserStorage = (prefix: string): StorageDriver => ({
     try {
       const { del } = await ensureIndexedDb();
       await del(namespaced);
-    } catch (error) {
+    } catch {
       if (typeof localStorage !== 'undefined') {
         localStorage.removeItem(namespaced);
       }
@@ -120,7 +120,7 @@ const createNodeStorage = (prefix: string): StorageDriver => {
       const fs = await import('node:fs/promises');
       const raw = await fs.readFile(filePath, 'utf8');
       return JSON.parse(raw) as CacheEntry<T>;
-    } catch (error) {
+    } catch {
       return undefined;
     }
   };
@@ -177,8 +177,8 @@ const createNodeStorage = (prefix: string): StorageDriver => {
       const namespaced = getPrefixedKey(prefix, key);
       memoryStore.delete(namespaced);
       const dir = await ensureBasePath();
-      const path = await import('node:path');
-      const file = path.join(dir, `${namespaced}.json`);
+      const { join } = await import('node:path');
+      const file = join(dir, `${namespaced}.json`);
       await deleteFileEntry(file);
     },
 
@@ -186,7 +186,6 @@ const createNodeStorage = (prefix: string): StorageDriver => {
       const prefixFilter = namespace ? getPrefixedKey(prefix, namespace) : `${prefix}:`;
       const dir = await ensureBasePath();
       const fs = await import('node:fs/promises');
-      const path = await import('node:path');
       const files = await fs.readdir(dir, { withFileTypes: true });
       return files
         .filter((entry) => entry.isFile() && entry.name.startsWith(prefixFilter))

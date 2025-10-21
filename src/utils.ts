@@ -99,20 +99,19 @@ export const httpRequest = async <T = unknown>(options: HttpRequestOptions): Pro
         : (options.body as BodyInit))
     : undefined;
 
-  const agent = (await ensureNodeAgent()) as unknown;
+  const agent = await ensureNodeAgent();
 
-  const requestInit: RequestInit & { agent?: unknown } = {
+  const requestInit: RequestInit & { agent?: any } = {
     method: options.method ?? 'GET',
     headers,
     body,
     signal,
-    credentials: isBrowser() ? 'include' : undefined,
     mode: isBrowser() ? 'cors' : undefined,
     cache: 'no-store'
   };
 
   if (!isBrowser() && agent) {
-    (requestInit as any).agent = agent;
+    requestInit.agent = agent;
   }
 
   const request = fetchImpl(options.url, requestInit);
