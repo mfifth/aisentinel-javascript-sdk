@@ -1,6 +1,6 @@
 {
   "name": "@mfifth/aisentinel-javascript-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Isomorphic JavaScript SDK for AISentinel governance platform.",
   "type": "module",
   "main": "./node/dist/index.cjs",
