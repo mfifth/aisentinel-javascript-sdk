@@ -297,7 +297,7 @@ export default async function handler(req, res) {
 
 ### Prerequisites
 
-- Node.js 16+
+- Node.js 18+
 - npm or yarn
 
 ### Setup
