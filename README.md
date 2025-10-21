@@ -31,7 +31,7 @@ import { Governor } from '@mfifth/aisentinel-javascript-sdk';
 
 const governor = new Governor({
   apiKey: process.env.AISENTINEL_API_KEY,
-  baseURL: 'https://api.aisentinel.ai'
+  baseURL: 'https://aisentinel.fly.dev'
 });
 
 const result = await governor.preflight({
@@ -62,7 +62,7 @@ if (result.allowed) {
 
     const governor = new Governor({
       apiKey: 'your-api-key',
-      baseURL: 'https://api.aisentinel.ai'
+      baseURL: 'https://aisentinel.fly.dev'
     });
 
     // Use the governor in your application
@@ -94,7 +94,7 @@ import { Governor, resolveGovernorConfig } from '@mfifth/aisentinel-javascript-s
 // Using environment variables
 const config = resolveGovernorConfig({
   AISENTINEL_API_KEY: 'your-key',
-  AISENTINEL_BASE_URL: 'https://api.aisentinel.ai',
+  AISENTINEL_BASE_URL: 'https://aisentinel.fly.dev',
   AISENTINEL_CACHE_TTL: '300'
 });
 
